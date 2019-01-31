@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<h2>Your Pseudonyms are</h2>
+
+<ul class='my-pseudonyms'>
+    {% for author in object_list %}
+        <li class='pseudonym'><a href='{% url "authors:edit" author.id %}'>{{ author.name }}</a> - <span class='bio'>{{ author.bio_html|truncatechars_html:150 }}</span></li>
+    {% empty %}
+        <li class='no-pseudonyms'>{% trans 'You have no Pseudonyms' %}</li>
+    {% endfor %}
+        <li><a href="{% url 'authors:create' %}">{% trans 'Add a new Pseudonym' %}</a></li>
+</ul>
+{% endblock content %}

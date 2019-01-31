@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="{% static 'img/favicon.ico' %}">
+	<title>{% block PageTitle %}Diary of Life{% endblock PageTitle %}</title>
+	<!-- Bootstrap core CSS -->
+	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+	<!-- Fonts -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link href="{% static 'css/sitestyles.2.css' %}" rel="stylesheet">
+	{% block styles %}
+	{% endblock styles %}
+</head>
+<body>
+
+<!-- Begin Nav
+================================================== -->
+<nav class="navbar navbar-toggleable-md navbar-light bg-white fixed-top mediumnavigation">
+<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="container">
+	<!-- Begin Logo -->
+	<a class="navbar-brand" href="index.html">
+	<img src="{% static 'img/logo.png' %}" alt="logo">
+	</a>
+	<!-- End Logo -->
+	<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+		{% block top-menu %}
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item">
+				<a class="nav-link" href="{% url 'stories:recent' %}">Stories</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{% url 'stories:create' %}">Post</a>
+			</li>
+			{% if user.is_authenticated %}
+			    <li class="nav-item">
+				<a class="nav-link" href="{% url 'userena_signout' %}">Signout</a>
+			    </li>
+			    <li class="nav-item">
+				<a class="nav-link" href="{% url 'userena_profile_detail' user.username %}">Profile</a>
+			    </li>
+			{% else %}
+			    <li class="nav-item">
+				<a class="nav-link" href="{% url 'userena_signin' %}">Signup/Signin</a>
+			    </li>
+			{% endif %}
+		</ul>
+		{% endblock top-menu %}
+		{% block search %}
+		<form class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" type="text" placeholder="Search">
+			<span class="search-icon"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M20.067 18.933l-4.157-4.157a6 6 0 1 0-.884.884l4.157 4.157a.624.624 0 1 0 .884-.884zM6.5 11c0-2.62 2.13-4.75 4.75-4.75S16 8.38 16 11s-2.13 4.75-4.75 4.75S6.5 13.62 6.5 11z"></path></svg></span>
+		</form>
+		{% endblock search %}
+	</div>
+</div>
+</nav>
+<!-- End Nav
+================================================== -->
+
+<div class="container">
+	{% block site-title %}
+	<div class="mainheading">
+		<h1 class="sitetitle">Diary Of Life</h1>
+		<p class="lead">
+			 Stories of life that connect us all
+		</p>
+	</div>
+	{% endblock site-title %}
+
+	{% block content %}
+	{% endblock content %}
+
+
+	{% block footer %}
+	<div class="footer">
+		<p class="pull-left">
+			 Copyright &copy; 2019 Diary of Life
+		</p>
+		<div class="clearfix">
+		</div>
+	</div>
+	{% endblock %}
+
+</div>
+<!-- /.container -->
+
+{% block javascript %}
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
+{% endblock javascript %}
+</body>
+</html>
