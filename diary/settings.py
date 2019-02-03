@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 import logging
-
+from logging import config as logging_config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -51,7 +51,7 @@ if SENTRY_KEY:
 DEBUG = bool(int(os.getenv('DJANGO_DEBUG', 0)))
 
 if not DEBUG:
-    logging.config.dictConfig({
+    logging_config.dictConfig({
             'version': 1,
             'disable_existing_loggers': False,
             'formatters': {
@@ -85,6 +85,7 @@ ALLOWED_HOSTS = [
     'www.diaryof.life',
     'diaryof.life',
     'diary',
+    '127.0.0.1'
 ]
 
 
@@ -120,6 +121,7 @@ INSTALLED_APPS.extend([
     'userena',
     'easy_thumbnails',
     'guardian',
+    'rest_framework',
 
     'stories',
     'authors',
@@ -299,3 +301,9 @@ MARTOR_MARKDOWN_BASE_EMOJI_URL = 'https://assets-cdn.github.com/images/icons/emo
 MARTOR_MARKDOWN_BASE_MENTION_URL = 'https://python.web.id/author/' # default (change this)
 
 from martor.extensions import mdx_video
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20
+}
