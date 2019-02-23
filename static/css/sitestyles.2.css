@@ -470,3 +470,32 @@ a.wrap-card-story {
 input {
     border: 1px solid grey; /* ios is showing the fields with no border??? */
 }
+
+/* Login and Signup template style */
+.ui.grid.login .card,.ui.grid.signup .card{
+	min-width:400px !important;
+	margin:auto !important;
+	margin-top:10vh !important;
+}
+.forgot-password{
+	float:right;
+	padding:10px;
+}
+.ui.grid.login .card .header,.ui.grid.signup .card .header{
+	font-family:'Special Elite',sans-serif;
+	text-align:center;
+}
+.ui.grid.login .card .header p,.ui.grid.signup .card .header p{
+	font-family: 'Ubuntu',sans-serif;
+}
+.ui.grid.login .card .form .input,.ui.grid.signup .card .input{
+	width:100% !important;
+}
+.ui.grid.login,.ui.grid.signup{
+	background-color: #313436;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+}
